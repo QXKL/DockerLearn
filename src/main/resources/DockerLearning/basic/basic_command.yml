@@ -1,0 +1,33 @@
+### docker 基础概念与操作
+
+# ================================
+# 目录
+# ================================
+
+# 0 docker 基础概念
+# 1 docker ps
+# 2 docker run
+# 3 docker start
+# 4 docker restart
+# 5 docker stop
+# 6 docker update
+# 7 docker pull
+# 8 docker exec
+# 9 docker logs
+# 10 docker rm
+# 11 other
+
+# ================================
+# docker 基础概念
+# ================================
+
+# 镜像 image：安装包/模板
+# 容器 container.md：运行中的实例
+# 仓库 registry：存镜像的地方，比如 Docker Hub
+# 镜像仓库 registry：存储镜像的地方，比如 Docker Hub
+# 数据卷 volume：数据存储的地方
+# 网络 network：容器之间的网络
+
+# ===============================
+# 按照命令去选择对应的.md文件查看
+# ===============================

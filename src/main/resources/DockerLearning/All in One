@@ -1,0 +1,62 @@
+# ============================================================
+# Docker 常用命令速查表
+# ============================================================
+
+# ------------------------- 容器生命周期 -------------------------
+docker ps                  # 列出运行中的容器
+docker ps -a               # 列出所有容器（含已停止）
+docker ps -q               # 只显示容器ID
+
+docker run -d --name xxx 镜像   # 后台运行容器
+docker run -it --name xxx 镜像 bash   # 交互式运行
+docker run --rm 镜像            # 退出后自动删除
+
+docker start 容器           # 启动已停止的容器
+docker stop 容器            # 停止容器
+docker restart 容器         # 重启容器
+docker rm 容器              # 删除已停止的容器
+docker rm -f 容器           # 强制删除（含运行中）
+
+# ------------------------- 镜像管理 -------------------------
+docker images              # 列出本地镜像
+docker pull 镜像           # 拉取镜像
+docker rmi 镜像            # 删除镜像
+docker build -t 名称 .      # 从 Dockerfile 构建镜像
+
+# ------------------------- 容器交互 -------------------------
+docker exec -it 容器 bash    # 进入容器内部（最常用）
+docker logs 容器            # 查看日志
+docker logs -f 容器         # 实时跟踪日志
+docker logs --tail 100 容器 # 查看最后100行
+
+# ------------------------- 资源限制 -------------------------
+docker update --cpus=1 容器      # 限制CPU核心数
+docker update --memory=512m 容器 # 限制内存
+docker update --restart=always 容器  # 设置开机自启
+
+# ------------------------- 端口与卷 -------------------------
+docker run -p 8080:80 镜像      # 端口映射（主机:容器）
+docker run -v /host:/container 镜像  # 挂载目录
+docker run -v 卷名:/container 镜像   # 挂载命名卷
+
+# ------------------------- 信息查看 -------------------------
+docker ps -a --format "table {{.Names}}\t{{.Status}}"  # 自定义输出格式
+docker inspect 容器           # 查看容器详细信息
+docker stats                 # 实时查看容器资源使用
+docker version               # 查看Docker版本
+docker info                  # 查看Docker系统信息
+
+# ------------------------- 清理命令 -------------------------
+docker container prune -f    # 删除所有已停止的容器
+docker image prune -f        # 删除所有虚悬镜像
+docker system prune -a       # 彻底清理（容器、镜像、网络、缓存）
+docker system df             # 查看磁盘使用情况
+
+# ------------------------- docker-compose -------------------------
+docker-compose up -d         # 后台启动所有服务
+docker-compose down          # 停止并删除容器
+docker-compose ps            # 查看服务状态
+docker-compose logs -f       # 实时查看日志
+docker-compose exec 服务 bash # 进入服务容器
+docker-compose restart       # 重启所有服务
+docker-compose pull          # 拉取最新镜像
