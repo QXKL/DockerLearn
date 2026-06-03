@@ -12,7 +12,7 @@
 
 services:
   rabbitmq:
-    container_name: my-rb-container.md
+    container_name: my-rabbit-container
     hostname: my-rabbit
     ports:
       - "5672:5672"
@@ -20,6 +20,13 @@ services:
     volumes:
       - LearnRabbitMQVolume:/var/lib/rabbitmq
     image: rabbitmq:3-management
+
+  redis:
+    container_name: my-redis-container
+    hostname: my-redis
+    ports:
+      - "6379:6379"
+    image: redis:7.0.11
 
 volumes:
   LearnRabbitMQVolume:
