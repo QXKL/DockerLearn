@@ -1,0 +1,26 @@
+# Linux命令：
+# docker run -d \
+#  --name my-rb-container \
+#  --hostname my-rabbit \
+#  -p 5672:5672 \
+#  -p 15672:15672 \
+#  -v LearnRabbitMQVolume:/var/lib/rabbitmq \
+#  rabbitmq:3-management
+
+# windows命令：
+# docker run -d --name my-rb-container --hostname my-rabbit -p 5672:5672 -p 15672:15672 -v LearnRabbitMQVolume:/var/lib/rabbitmq rabbitmq:3-management
+
+services:
+  rabbitmq:
+    container_name: my-rb-container
+    hostname: my-rabbit
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - LearnRabbitMQVolume:/var/lib/rabbitmq
+    image: rabbitmq:3-management
+
+volumes:
+  LearnRabbitMQVolume:
+
