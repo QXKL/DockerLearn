@@ -1,0 +1,46 @@
+services:
+#  app:
+#    image: dockerfile:v1
+#    container_name: my-app
+#    ports:
+#      - "9000:8080"   # 注意：因为spring-boot-docker-compose会跳过app，所以配置9000:8080是不可行的，目前springboot应该是运行在8080。
+#                      # 但是当打包成镜像后，需要通过9000访问。
+#                      # 如果开发时需要通过9000访问，需要修改springboot的配置文件，将server.port=8080修改为server.port=9000
+#    depends_on:
+#      - mysql
+#      - rabbitmq
+#      - redis
+
+  mysql:
+    container_name: my-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: learn
+      MYSQL_ROOT_PASSWORD: root
+    image: mysql:8
+    volumes:
+      - LearnMysqlVolume:/var/lib/mysql
+
+  rabbitmq:
+    container_name: my-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    image: rabbitmq:3-management
+
+    volumes:
+      - LearnRabbitMQVolume:/var/lib/rabbitmq
+
+  redis:
+    container_name: my-redis
+    ports:
+      - "6379:6379"
+    image: redis:7
+    volumes:
+      - LearnRedisVolume:/data
+
+volumes:
+  LearnRabbitMQVolume:
+  LearnRedisVolume:
+  LearnMysqlVolume:

@@ -1,3 +1,30 @@
+#server:
+#  port: 8080
+
 spring:
   application:
     name: DockerDemo
+
+  docker:
+    compose:
+      file: compose.yml  # 显式指定文件路径
+      enabled: true
+
+  datasource:
+#    url: jdbc:mysql://localhost:3307/test   # 本地开发(有spring-boot-docker-compose的话，它会帮忙解决的)
+    url: jdbc:mysql://mysql:3306/learn    # docker运行
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    redis:
+      host: redis
+
+  rabbitmq:
+    host: rabbitmq
